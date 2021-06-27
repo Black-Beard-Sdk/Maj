@@ -4,7 +4,7 @@ using System.IO;
 
 namespace Bb.CommandLines
 {
-    public static class Helper
+    internal static class Helper
     {
 
 

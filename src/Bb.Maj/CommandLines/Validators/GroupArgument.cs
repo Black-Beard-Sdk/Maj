@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace Bb.CommandLines.Validators
 {
 
-    public class GroupArgument
+    internal class GroupArgument
     {
 
 

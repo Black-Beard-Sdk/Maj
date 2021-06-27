@@ -6,7 +6,7 @@ using System.Text;
 namespace Bb.CommandLines.Outs
 {
 
-    public static partial class Output
+    internal static partial class Output
     {
 
 

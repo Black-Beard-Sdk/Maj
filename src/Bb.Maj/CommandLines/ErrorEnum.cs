@@ -1,7 +1,7 @@
 ﻿namespace Bb.CommandLines
 {
 
-    public enum ErrorEnum
+    internal enum ErrorEnum
     {
 
         None = 0,

@@ -92,10 +92,18 @@ namespace Bb.Maj.Commands
                 var artefactNameArgument = validator.Argument("<artefact name>", "specifiy the artifact name");
                 var targetDirArgument = validator.Argument("<target path>", "specifiy the target directory");
 
-                var versionOpt = validator.Option("--v ", "specifiy the version");
+                var processToWaitOpt = validator.Option("--p", "specifiy a process to waiting to end");
+                var versionOpt = validator.Option("--v", "specifiy the version");
 
                 config.OnExecute(() =>
                 {
+
+                    System.Diagnostics.Process process = null;
+                    if (processToWaitOpt.HasValue())
+                        process = System.Diagnostics.Process.GetProcessById(int.Parse(processToWaitOpt.Value()));
+
+
+                    System.Diagnostics.Debugger.Launch();
 
                     string name = null;
                     name = packageNameArgument.Value.TrimPath();
@@ -148,6 +156,9 @@ namespace Bb.Maj.Commands
                             }
                             else
                                 Output.WriteLineStandard($"update starting");
+
+                            if (process != null)
+                                process.WaitForExit(1000 * 120);
 
                             result = dirToExtract.MoveTo(dirTarget);
 

@@ -5,11 +5,9 @@ using System.Text;
 
 namespace Bb.CommandLines.Ins
 {
-    
-    public static class Input
+
+    internal static class Input
     {
-
-
 
         public static MemoryStream GetInputRedirection()
         {

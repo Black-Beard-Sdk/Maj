@@ -8,7 +8,7 @@ namespace Bb.CommandLines.Validators
 {
 
 
-    public static class ValidatorExtension
+    internal static class ValidatorExtension
     {
 
 

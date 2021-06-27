@@ -5,7 +5,7 @@ using System.IO;
 namespace Bb.CommandLines.Outs
 {
 
-    public static partial class Output
+    internal static partial class Output
     {
 
         public static MemoryStream GetErrorRedirection()

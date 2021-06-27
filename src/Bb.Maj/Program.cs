@@ -2,6 +2,10 @@
 using Bb.Maj.Commands;
 using Microsoft.Extensions.CommandLineUtils;
 using System;
+using System.Diagnostics;
+using System.IO;
+using System.Linq;
+using System.Reflection;
 
 namespace Bb.Maj
 {
@@ -9,13 +13,6 @@ namespace Bb.Maj
     public partial class Program
     {
 
-        static Program()
-        {
-
-            // ensure all assemblies are loaded.
-            //var type = typeof(Bb.Jslt.Services.Excels.Column);
-
-        }
 
         public static int ExitCode { get; private set; }
 
@@ -29,7 +26,7 @@ namespace Bb.Maj
                 app = new CommandLineApplication()
                     .Initialize()
                     .CommandVersions()
-                    
+
                 ;
 
                 int result = app.Execute(args);
@@ -82,65 +79,30 @@ namespace Bb.Maj
             Environment.ExitCode = Program.ExitCode = 2;
         }
 
+        public static void RunUpdate(Assembly callingAssembly)
+        {
+
+            var attributes = callingAssembly.GetCustomAttributes<AssemblyMetadataAttribute>().ToDictionary(c => c.Key);
+            string packageNameArgument = attributes["githubName"].Value;
+            string artefactNameArgument = attributes["githubartefact"].Value;
+            string targetDirArgument = new FileInfo(callingAssembly.Location).Directory.FullName;
+
+
+            var file = new FileInfo(typeof(Program).Assembly.Location);
+            file = new FileInfo(Path.Combine(file.Directory.FullName, Path.GetFileNameWithoutExtension(file.Name) + ".exe"));
+
+            var process = Process.GetCurrentProcess();
+
+            var info = new ProcessStartInfo()
+            {
+                FileName = file.FullName,
+                Arguments = $"install \"{packageNameArgument}\" \"{artefactNameArgument}\" \"{targetDirArgument}\" --p {process.Id}"
+            };
+
+            var process1 = Process.Start(info);
+
+        }
     }
 
-
-
-    //class Program
-    //{
-
-    //    // commandline "Black-Beard-Sdk/jslt" 1.0.25
-
-    //    // {0} = https://github.com/
-    //    // {1} = "Black-Beard-Sdk/jslt"
-
-    //    // {0}{1} --> https://github.com/Black-Beard-Sdk/jslt
-
-    //    // href="{0}{1}/releases/tag/1.0.27
-
-
-    //    // <title>Release 1.0.27 · {0}</title>
-
-    //    // https://github.com/{0}/releases/download/1.0.27/cli.zip
-    //    // https://github.com/{0}/releases/download/1.0.27/evaluator.zip
-
-
-    //    // href="/{0}/releases/download/1.0.27/cli.zip"
-
-    //    static void Main(string[] args)
-    //    {
-
-    //        string[] a = args.Select(c => Trim(c)).ToArray();
-
-    //        //var parameters = new Parameters()
-    //        //{
-    //        //    Url = new Uri($"https://github.com/{a[0]}"),
-    //        //    //Url = new Uri($"https://github.com/" + $"{a[0]}/releases/latest"),
-    //        //    CurrentVersion = new Version(a[1]),
-    //        //};
-
-    //        string name = "Black-Beard-Sdk/jslt";
-
-    //        var result = name.GetUrls();
-    //        var items = result.ToLookup(c => c.Name).ToList();
-
-
-    //    }
-
-
-    //    private static string Trim(string self)
-    //    {
-    //        var o = self.Trim();
-
-    //        if (o.StartsWith('"') && o.EndsWith('"'))
-    //            o = self.Trim().Trim('"');
-
-    //        if (o.StartsWith('\'') && o.EndsWith('\''))
-    //            o = self.Trim().Trim('\'');
-
-    //        return o;
-    //    }
-
-    //}
 
 }

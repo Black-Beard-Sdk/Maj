@@ -8,7 +8,7 @@ using System.Reflection;
 namespace Bb.CommandLines.Outs.Printings
 {
 
-    public static class ConvertToDatatable
+    internal static class ConvertToDatatable
     {
 
         public static DataTable Convert<T>(T result, string label, params Expression<Func<T, object>>[] items)

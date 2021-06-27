@@ -2,7 +2,7 @@
 
 namespace Bb
 {
-    public static partial class Constants
+    internal static partial class Constants
     {
 
         static Constants()
