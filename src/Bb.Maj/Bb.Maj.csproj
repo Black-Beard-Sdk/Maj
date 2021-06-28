@@ -15,6 +15,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Bb.MajLib\Bb.MajLib.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="BlackBeard.Maj.nuspec">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
