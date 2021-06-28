@@ -4,11 +4,6 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Bb</RootNamespace>
-    <Authors>Black beard (gael beard)</Authors>
-    <Description>manage update</Description>
-    <PackageProjectUrl>https://github.com/Black-Beard-Sdk/Maj</PackageProjectUrl>
-    <PackageId>BlackBeard.Maj</PackageId>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
@@ -17,6 +12,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.CommandLineUtils" Version="1.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="BlackBeard.Maj.nuspec">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>
