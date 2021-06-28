@@ -4,6 +4,11 @@
     <OutputType>Exe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Bb</RootNamespace>
+    <Authors>Black beard (gael beard)</Authors>
+    <Description>manage update</Description>
+    <PackageProjectUrl>https://github.com/Black-Beard-Sdk/Maj</PackageProjectUrl>
+    <PackageId>BlackBeard.Maj</PackageId>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
